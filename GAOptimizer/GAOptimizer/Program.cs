@@ -63,27 +63,44 @@ namespace GAOptimizer
 
             var latestFitness = 0.0;
 
-            ga.GenerationRan += (sender, e) =>
-            {
-                var bestChromosome = ga.BestChromosome as FloatingPointChromosome;
-                var bestFitness = bestChromosome.Fitness.Value;
-                if (bestFitness != latestFitness)
-                {
-                    latestFitness = bestFitness;
-                    var phenotype = bestChromosome.ToFloatingPoints();
-                    Console.WriteLine(
-                        "Generation {0,2}: ({1},{2}),({3},{4}) = {5}",
-                        ga.GenerationsNumber,
-                        phenotype[0],
-                        phenotype[1],
-                        phenotype[2],
-                        phenotype[3],
-                        bestFitness
-                    );
-                }
-            };
+            //ga.GenerationRan += (sender, e) =>
+            //{
+            //    var bestChromosome = ga.BestChromosome as FloatingPointChromosome;
+            //    var bestFitness = bestChromosome.Fitness.Value;
+            //    if (bestFitness != latestFitness)
+            //    {
+            //        latestFitness = bestFitness;
+            //        var phenotype = bestChromosome.ToFloatingPoints();
+            //        Console.WriteLine(
+            //            "Generation {0,2}: ({1},{2}),({3},{4}) = {5}",
+            //            ga.GenerationsNumber,
+            //            phenotype[0],
+            //            phenotype[1],
+            //            phenotype[2],
+            //            phenotype[3],
+            //            bestFitness
+            //        );
+            //    }
+            //};
 
             ga.Start();
+
+            var bestChromosome = ga.BestChromosome as FloatingPointChromosome;
+            var bestFitness = bestChromosome.Fitness.Value;
+            if (bestFitness != latestFitness)
+            {
+                latestFitness = bestFitness;
+                var phenotype = bestChromosome.ToFloatingPoints();
+                Console.WriteLine(
+                    "Generation {0,2}: ({1},{2}),({3},{4}) = {5}",
+                    ga.GenerationsNumber,
+                    phenotype[0],
+                    phenotype[1],
+                    phenotype[2],
+                    phenotype[3],
+                    bestFitness
+                );
+            }
 
             Console.ReadKey();
         }
